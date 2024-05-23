@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica+SC&family=IM+Fell+English&family=IM+Fell+French+Canon:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Loved Ones - SK</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        Stephen King <br />
+        Loved Ones
+      </div>
+      <img src="./assets/lineHeader.svg" alt="line" />
+      <a href="#" class="linkFavorites">My favorites</a>
+    </header>
+    <main>
+      <div class="lineSidePage">
+        <img src="./assets/lineLeft.svg" alt="" />
+      </div>
+      <div class="content">
+        <div class="searchArea">
+          <div class="search">
+            <form>
+              <input
+                type="text"
+                name="queryName"
+                id="search"
+                placeholder="Name of the book"
+                aria-label="Name of the book"
+              />
+              <button class="btnSearch">Search</button>
+            </form>
+          </div>
+          <div class="filter">
+            <span>Filter By:</span>
+            <form>
+              <select name="year" id="year">
+                <option value="">Year</option>
+                <option value="2000">2000</option>
+                <option value="2001">2001</option>
+              </select>
+              <select name="publisher" id="publisher">
+                <option value="">Publisher</option>
+                <option value="Vault Tec">Vault Tec</option>
+              </select>
+              <label for="shortStory">
+                Short story
+                <input
+                  type="checkbox"
+                  name="shortStory"
+                  id="shortStory"
+                  aria-label="select short story"
+                />
+              </label>
+            </form>
+          </div>
+        </div>
+        <div class="books">
+          <div class="cardBook">
+            <div class="headerCard">
+              <img class="bookCover" src="./assets/image.svg" alt="" />
+              <label for="selectCard">
+                <img
+                  class="favoriteIcon"
+                  src="./assets/heart-outline.svg"
+                  alt=""
+                />
+                <input
+                  type="checkbox"
+                  name="card"
+                  id="selectCard"
+                  aria-label="favorite"
+                />
+              </label>
+            </div>
+            <div class="footerCard">
+              <p class="nameOfTheBook">IT, The Thing</p>
+            </div>
+          </div>
+          <div class="cardBook">
+            <div class="headerCard">
+              <img class="bookCover" src="./assets/image.svg" alt="" />
+              <label for="selectCard">
+                <img
+                  class="favoriteIcon"
+                  src="./assets/heart-outline.svg"
+                  alt=""
+                />
+                <input
+                  type="checkbox"
+                  name="card"
+                  id="selectCard"
+                  aria-label="favorite"
+                />
+              </label>
+            </div>
+            <div class="footerCard">
+              <p class="nameOfTheBook">IT, The Thing</p>
+            </div>
+          </div>
+          <div class="cardBook">
+            <div class="headerCard">
+              <img class="bookCover" src="./assets/image.svg" alt="" />
+              <label for="selectCard">
+                <img
+                  class="favoriteIcon"
+                  src="./assets/heart-outline.svg"
+                  alt=""
+                />
+                <input
+                  type="checkbox"
+                  name="card"
+                  id="selectCard"
+                  aria-label="favorite"
+                />
+              </label>
+            </div>
+            <div class="footerCard">
+              <p class="nameOfTheBook">IT, The Thing</p>
+            </div>
+          </div>
+          <div class="cardBook">
+            <div class="headerCard">
+              <img class="bookCover" src="./assets/image.svg" alt="" />
+              <label for="selectCard">
+                <img
+                  class="favoriteIcon"
+                  src="./assets/heart-outline.svg"
+                  alt=""
+                />
+                <input
+                  type="checkbox"
+                  name="card"
+                  id="selectCard"
+                  aria-label="favorite"
+                />
+              </label>
+            </div>
+            <div class="footerCard">
+              <p class="nameOfTheBook">IT, The Thing</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lineSidePage">
+        <img src="./assets/lineRight.svg" alt="" />
+      </div>
+    </main>
+  </body>
+</html>
