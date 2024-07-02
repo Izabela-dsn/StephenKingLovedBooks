@@ -67,7 +67,7 @@ main {
   margin-right: 1rem;
 }
 
-.search .btnSearch {
+.search #btnSearch {
   background-color: #b4881a;
   color: #fcfbea;
   padding: 0.55rem 2.5rem;
@@ -75,7 +75,7 @@ main {
   border: none;
 }
 
-.search .btnSearch:hover {
+.search #btnSearch:hover {
   cursor: pointer;
 }
 
