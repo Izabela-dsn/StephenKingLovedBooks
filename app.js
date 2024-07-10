@@ -4,6 +4,7 @@ const formNameBook = document.querySelector("#formName")
 const inputNameBook = document.querySelector("#search")
 const btnInputSearch = document.querySelector("#btnSearch")
 const displayBookArea = document.querySelector(".books")
+const loading = document.querySelector(".loading-screen")
 let dataBooks = null
 let books = null
 
@@ -22,14 +23,32 @@ const getDataOfApi = async () => {
   return dataBooks
 }
 
+const getBookCover = async (param) => {
+  try {
+    const response = await axios.get(
+      `https://bookcover.longitood.com/bookcover/${param}`
+    )
+    return response.data
+  } catch (error) {
+    console.error("Sorry", error)
+  }
+}
+
 btnInputSearch.addEventListener("click", async (e) => {
   e.preventDefault()
   let nameOfTheBookInput = inputNameBook.value.toLowerCase()
+
   try {
+    loading.style.display = "flex"
     let result = await getDataOfApi()
     books = findBook(nameOfTheBookInput, result)
+
+    let bookCover = await findBookCover(books)
+    console.log("bc", bookCover)
+
+    loading.style.display = "none"
     displayBookArea.innerHTML = ""
-    renderSearch(books)
+    renderSearch(books, bookCover)
   } catch (error) {
     console.log("error: ", error)
   }
@@ -42,18 +61,31 @@ const findBook = (name, dataBook) => {
   return book
 }
 
-const findBookCover = (param) => {
-  console.log(param)
-  //will return a img
+const findBookCover = async (books) => {
+  const bookCovers = []
+
+  for (const book of books) {
+    try {
+      const cover = await getBookCover(book.ISBN)
+      bookCovers.push(cover.url)
+    } catch (error) {
+      console.error("error:", error)
+    }
+  }
+  console.log(bookCovers)
+  return bookCovers
 }
-const renderSearch = (books) => {
+const renderSearch = (books, bookCover) => {
   //will get the name and img and will render on screen
-  books.forEach((book) => {
-    let img = findBookCover(book.ISBN)
-    const card = `
+  if (bookCover && books) {
+    books.forEach((book, index) => {
+      const card = `
       <div class="cardBook">
         <div class="headerCard">
-          <img class="bookCover" src="./assets/image.svg" alt="" />
+          <img class="bookCover" src="${bookCover[index].replace(
+            /"/g,
+            ""
+          )}" alt=${book.Title} />
           <label for="selectCard">
             <img class="favoriteIcon" src="./assets/heart-outline.svg" alt="" />
             <input
@@ -69,8 +101,19 @@ const renderSearch = (books) => {
         </div>
       </div>
     `
-    displayBookArea.innerHTML += card
-  })
+
+      displayBookArea.innerHTML += card
+    })
+  } else {
+    const load = `
+      <div>
+        <span>
+          Loading...
+        </span>
+      </div>
+    `
+    displayBookArea.innerHTML = load
+  }
 }
 
 const saveFavoriteBook = () => {

@@ -170,3 +170,33 @@ main {
   font: 300 16px "IM Fell French Canon", serif;
   color: #fcfbea;
 }
+
+.loading-screen {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #b4881a;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
