@@ -6,11 +6,6 @@ const btnInputSearch = document.querySelector("#btnSearch")
 const displayBookArea = document.querySelector(".books")
 const loading = document.querySelector(".loading-screen")
 
-const filterInput = document.querySelector("#shortStory")
-const filterLabel = document.querySelector("#labelShorStory")
-
-console.log(filterInput)
-
 let dataBooks = null
 let books = null
 
@@ -81,6 +76,7 @@ const findBookCover = async (books) => {
   console.log(bookCovers)
   return bookCovers
 }
+
 const renderSearch = (books, bookCover) => {
   //will get the name and img and will render on screen
   if (bookCover && books) {
@@ -92,13 +88,14 @@ const renderSearch = (books, bookCover) => {
             /"/g,
             ""
           )}" alt=${book.Title} />
-          <label for="selectCard">
-            <img class="favoriteIcon" src="./assets/heart-outline.svg" alt="" />
+          <label for="selectCard${index}">
+            <img class="favoriteIcon" id="favoriteIcon${index}" src="./assets/heart-outline.svg" alt="" />
             <input
               type="checkbox"
               name="card"
-              id="selectCard"
+              id="selectCard${index}"
               aria-label="favorite"
+              class="inputFavoriteIcon"
             />
           </label>
         </div>
@@ -109,6 +106,21 @@ const renderSearch = (books, bookCover) => {
     `
 
       displayBookArea.innerHTML += card
+    })
+
+    books.forEach((book, index) => {
+      const favoriteInput = document.getElementById(`selectCard${index}`)
+      const favoriteIcon = document.getElementById(`favoriteIcon${index}`)
+
+      if (favoriteInput && favoriteIcon) {
+        favoriteInput.addEventListener("change", () => {
+          if (favoriteInput.checked) {
+            favoriteIcon.src = "./assets/heart-full.svg"
+          } else {
+            favoriteIcon.src = "./assets/heart-outline.svg"
+          }
+        })
+      }
     })
   } else {
     const load = `
@@ -125,14 +137,3 @@ const renderSearch = (books, bookCover) => {
 const saveFavoriteBook = () => {
   //save on local storage and handle the heart 'state'
 }
-
-const filterByShortStory = () => {
-  filterInput.addEventListener("change", () => {
-    if (filterInput.checked) {
-      filterLabel.classList.add("onActive")
-    } else {
-      filterLabel.classList.remove("onActive")
-    }
-  })
-}
-filterByShortStory()
