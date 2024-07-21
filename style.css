@@ -79,46 +79,8 @@ main {
   cursor: pointer;
 }
 
-.filter {
+.loaderTxt {
   font: 400 14px "IM Fell English", serif;
-  display: flex;
-  align-items: center;
-}
-
-.filter form {
-  display: flex;
-}
-
-.filter select,
-.filter label {
-  margin-left: 1rem;
-  background-color: transparent;
-  padding: 0.25rem 1rem 0.25rem 0.75rem;
-  border-radius: 6px;
-  border: 1.5px #000 solid;
-  font: 400 14px "IM Fell English", serif;
-  text-align: left;
-}
-
-.filter label {
-  padding: 0.25rem 0.6rem;
-}
-
-.filter select:hover,
-.filter label:hover {
-  cursor: pointer;
-}
-
-.filter select option {
-  background-color: #fcfbea;
-}
-
-.filter label.onActive {
-  background-color: #b4881a;
-}
-
-.filter #shortStory {
-  display: none;
 }
 
 .books {

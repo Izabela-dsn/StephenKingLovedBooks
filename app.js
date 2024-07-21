@@ -5,6 +5,12 @@ const inputNameBook = document.querySelector("#search")
 const btnInputSearch = document.querySelector("#btnSearch")
 const displayBookArea = document.querySelector(".books")
 const loading = document.querySelector(".loading-screen")
+
+const filterInput = document.querySelector("#shortStory")
+const filterLabel = document.querySelector("#labelShorStory")
+
+console.log(filterInput)
+
 let dataBooks = null
 let books = null
 
@@ -119,3 +125,14 @@ const renderSearch = (books, bookCover) => {
 const saveFavoriteBook = () => {
   //save on local storage and handle the heart 'state'
 }
+
+const filterByShortStory = () => {
+  filterInput.addEventListener("change", () => {
+    if (filterInput.checked) {
+      filterLabel.classList.add("onActive")
+    } else {
+      filterLabel.classList.remove("onActive")
+    }
+  })
+}
+filterByShortStory()
