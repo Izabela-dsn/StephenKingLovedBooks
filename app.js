@@ -8,6 +8,7 @@ const loading = document.querySelector(".loading-screen")
 
 let dataBooks = null
 let books = null
+let favoritesBooks = []
 
 const getDataOfApi = async () => {
   if (!dataBooks) {
@@ -108,20 +109,7 @@ const renderSearch = (books, bookCover) => {
       displayBookArea.innerHTML += card
     })
 
-    books.forEach((book, index) => {
-      const favoriteInput = document.getElementById(`selectCard${index}`)
-      const favoriteIcon = document.getElementById(`favoriteIcon${index}`)
-
-      if (favoriteInput && favoriteIcon) {
-        favoriteInput.addEventListener("change", () => {
-          if (favoriteInput.checked) {
-            favoriteIcon.src = "./assets/heart-full.svg"
-          } else {
-            favoriteIcon.src = "./assets/heart-outline.svg"
-          }
-        })
-      }
-    })
+    saveFavoriteBook(books, bookCover)
   } else {
     const load = `
       <div>
@@ -134,6 +122,32 @@ const renderSearch = (books, bookCover) => {
   }
 }
 
-const saveFavoriteBook = () => {
+const saveFavoriteBook = (books, bookCover) => {
   //save on local storage and handle the heart 'state'
+  books.forEach((book, index) => {
+    const favoriteInput = document.getElementById(`selectCard${index}`)
+    const favoriteIcon = document.getElementById(`favoriteIcon${index}`)
+
+    if (favoriteInput && favoriteIcon) {
+      favoriteInput.addEventListener("change", () => {
+        if (favoriteInput.checked) {
+          favoriteIcon.src = "./assets/heart-full.svg"
+          favoritesBooks.push({ book: book, bookCover: bookCover[index] })
+          console.log("my", favoritesBooks)
+        } else {
+          favoriteIcon.src = "./assets/heart-outline.svg"
+          const bookIndex = favoritesBooks.findIndex(
+            (favBook) => favBook.book === book
+          )
+          if (bookIndex !== -1) {
+            favoritesBooks.splice(bookIndex, 1)
+          }
+          console.log("pop", favoritesBooks)
+        }
+        //save in local storage
+        let stringifyFavoriteList = JSON.stringify(favoritesBooks)
+        localStorage.setItem("bookFavorites", stringifyFavoriteList)
+      })
+    }
+  })
 }
